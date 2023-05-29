@@ -55,7 +55,6 @@ export default {
     },
     methods: {
         switchPerspective(perspective) {
-            console.log('switchPerspective')
             Nova.request().post('/nova-vendor/nova-perspectives/switch-perspective', {
                 perspective: perspective,
             }).then(response => {
