@@ -1,0 +1,32 @@
+{
+    "name": "norman-huth/nova-perspectives",
+    "license": "MIT",
+    "support": {
+        "source": "https://github.com/Muetze42/nova-perspectives",
+        "issues": "https://github.com/Muetze42/nova-perspectives/issues",
+        "docs": "https://github.com/Muetze42/nova-perspectives#readme"
+    },
+    "autoload": {
+        "psr-4": {
+            "NormanHuth\\NovaPerspectives\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Norman Huth",
+            "email": "norman@huth.it"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NormanHuth\\NovaPerspectives\\ServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "laravel/nova": "^4.0",
+        "norman-huth/nova-basic-package": "^1.2.5"
+    }
+}
