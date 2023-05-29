@@ -1,5 +1,6 @@
 Main:
   Installation & Setup: installation.md
+  Create a Perspective: create.md
   Change Menus: menus.md
   Perspective slugs for custom Styling, Fields, Filters etc.: slugs.md
   Perspective Selects And Icons: selects.md
