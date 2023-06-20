@@ -27,6 +27,6 @@
     "require": {
         "php": "^8.0",
         "laravel/nova": "^4.0",
-        "norman-huth/nova-basic-package": "^1.2.5"
+        "norman-huth/nova-basic-package": "^1.2.6"
     }
 }

@@ -1,12 +1,10 @@
 # Perspective Slugs
 
 Each perspective has a slug which is automatically generated from the class name.  
-In the class name, the perspective is not used if it ends with Perspective.  
+In the class name, the perspective is not used the ending `Perspective` word if it ends with Perspective.  
 `Str::slug(Str::kebab($class));`
 
-**Each slug must be unique!**
-
-Examples:
+Examples of generated slugs:
 
 | Perspective Class                      | Perspective Slug            |
 |----------------------------------------|-----------------------------|
@@ -16,6 +14,8 @@ Examples:
 | ContentPerspective                     | content                     |
 | OrderPerspective                       | order                       |
 | SiteCommunityPerspective               | site-community              |
+
+**Each slug must be unique!**
 
 ## List All Perspectives With Slug
 
@@ -33,7 +33,7 @@ php artisan perspective:list --basename
 
 ### Custom Slug
 
-You can define a other slug in each Perspective class:
+You can define another slug in each Perspective class:
 
 ```php
 use NormanHuth\NovaPerspectives\Perspective;

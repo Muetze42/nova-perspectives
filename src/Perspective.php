@@ -69,6 +69,14 @@ abstract class Perspective
      */
     public abstract function novaMenus(Request $request): void;
 
+    /**
+     * Determine if the filter or action should be available for the given request.
+     *
+     * @param Request $request
+     * @return bool
+     */
+    public abstract function authorizedToSee(Request $request): bool;
+
     public function __construct()
     {
         $this->icons['classes']['icon'] = '';
