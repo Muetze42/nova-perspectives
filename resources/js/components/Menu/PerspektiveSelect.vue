@@ -1,9 +1,9 @@
 <template>
     <div class="perspektive-select-container" v-if="pConfig.perspectives && Object.keys(pConfig.perspectives).length">
         <div v-if="item.label" class="perspektive-select-label mb-1">{{ item.label }}</div>
-        <MainMenuDropdown class="perspektive-switch form-input-bordered rounded w-full-child">
+        <Dropdown class="perspektive-switch rounded w-full-child">
             <slot name="trigger">
-                <DropdownTrigger class="w-full flex justify-between px-2">
+                <DropdownTrigger class="w-full form-control form-input form-input-bordered flex justify-between px-2 rounded">
                     <div class="flex gap-2 max-w-[11rem]">
                         <NHMenuIcon :icons="pConfig.current.icons" />
                         <div class="truncate">{{ pConfig.current.label }}</div>
@@ -20,7 +20,7 @@
                     </DropdownMenuItem>
                 </DropdownMenu>
             </template>
-        </MainMenuDropdown>
+        </Dropdown>
     </div>
 </template>
 
