@@ -3,12 +3,12 @@
         <div v-if="item.label" class="perspektive-select-label mb-1">{{ item.label }}</div>
         <Dropdown class="perspektive-switch rounded w-full-child">
             <slot name="trigger">
-                <DropdownTrigger class="w-full form-control form-input form-input-bordered flex justify-between px-2 rounded">
-                    <div class="flex gap-2 max-w-[11rem]">
+                <button class="w-full form-control form-input form-input-bordered inline-flex items-center cursor-pointe justify-between px-2 rounded">
+                    <span class="flex gap-2 max-w-[11rem]">
                         <NHMenuIcon :icons="pConfig.current.icons" />
-                        <div class="truncate">{{ pConfig.current.label }}</div>
-                    </div>
-                </DropdownTrigger>
+                        <span class="truncate">{{ pConfig.current.label }}</span>
+                    </span>
+                </button>
             </slot>
             <template #menu>
                 <DropdownMenu class="px-1 w-full" width="auto">
