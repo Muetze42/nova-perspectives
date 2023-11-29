@@ -2,11 +2,11 @@
 
 namespace NormanHuth\NovaPerspectives;
 
-use Illuminate\Support\ServiceProvider as Provider;
-use NormanHuth\NovaBasePackage\ServiceProviderTrait;
-use Laravel\Nova\Nova;
-use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider as Provider;
+use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Nova;
+use NormanHuth\NovaBasePackage\ServiceProviderTrait;
 
 class ServiceProvider extends Provider
 {
@@ -22,7 +22,7 @@ class ServiceProvider extends Provider
         $this->addAbout();
 
         Nova::serving(function (ServingNova $event) {
-            Nova::script('nova-perspectives', __DIR__.'/../dist/js/perspektive.js');
+            Nova::script('nova-perspectives', __DIR__ . '/../dist/js/perspektive.js');
         });
 
         $this->app->booted(function () {
@@ -30,8 +30,8 @@ class ServiceProvider extends Provider
         });
 
         $this->publishes([
-            __DIR__.'/../config/nova-perspectives.php' => config_path('nova-perspectives.php'),
-        ], 'config');
+            __DIR__ . '/../config/nova-perspectives.php' => config_path('nova-perspectives.php'),
+        ], 'nova-perspectives-config');
 
         if ($this->app->runningInConsole()) {
             $this->commands($this->getCommands());
@@ -46,8 +46,8 @@ class ServiceProvider extends Provider
     protected function getCommands(): array
     {
         return array_filter(array_map(function ($item) {
-            return '\\'.__NAMESPACE__.'\\Console\\Commands\\'.pathinfo($item, PATHINFO_FILENAME);
-        }, glob(__DIR__.'/Console/Commands/*.php')), function ($item) {
+            return '\\' . __NAMESPACE__ . '\\Console\\Commands\\' . pathinfo($item, PATHINFO_FILENAME);
+        }, glob(__DIR__ . '/Console/Commands/*.php')), function ($item) {
             return class_basename($item) != 'Command';
         });
     }
@@ -65,7 +65,7 @@ class ServiceProvider extends Provider
 
         Route::middleware(['nova'])
             ->prefix('nova-vendor/nova-perspectives')
-            ->group(__DIR__.'/../routes/api.php');
+            ->group(__DIR__ . '/../routes/api.php');
     }
 
     /**
@@ -76,7 +76,8 @@ class ServiceProvider extends Provider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/nova-perspectives.php', 'nova-perspectives'
+            __DIR__ . '/../config/nova-perspectives.php',
+            'nova-perspectives'
         );
     }
 }

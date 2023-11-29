@@ -7,13 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Menu\Menu;
-use NormanHuth\NovaPerspectives\PerspectiveHelper;
-use Symfony\Component\HttpFoundation\Response;
 use Laravel\Nova\Nova;
+use NormanHuth\NovaPerspectives\PerspectiveHelper;
 use ReflectionException;
+use Symfony\Component\HttpFoundation\Response;
 
 class HandleNovaPerspektive
 {
@@ -41,6 +40,7 @@ class HandleNovaPerspektive
      *
      * @param Request                      $request
      * @param Closure(Request): (Response) $next
+     *
      * @throws ReflectionException
      * @return Response
      */
@@ -80,11 +80,11 @@ class HandleNovaPerspektive
                 ->where('slug', '!=', $perspective['slug'])
                 ->map(function ($perspective) {
                     return Arr::only($perspective, $this->toShare);
-                })->toArray()
+                })->toArray(),
         ];
 
         Nova::provideToScript([
-            'perspectives' => fn () => $value
+            'perspectives' => fn () => $value,
         ]);
     }
 
@@ -93,6 +93,7 @@ class HandleNovaPerspektive
      *
      * @param Request $request
      * @param array   $perspective
+     *
      * @return void
      */
     protected function resolveMainMenu(Request $request, array $perspective): void
@@ -107,6 +108,7 @@ class HandleNovaPerspektive
      *
      * @param Request $request
      * @param array   $perspective
+     *
      * @return void
      */
     protected function resolveUserMenu(Request $request, array $perspective): void
@@ -121,6 +123,7 @@ class HandleNovaPerspektive
      *
      * @param Request $request
      * @param array   $perspective
+     *
      * @return void
      */
     protected function resolveUnfilteredMainMenuOver(Request $request, array $perspective): void
@@ -128,7 +131,7 @@ class HandleNovaPerspektive
         if (!empty($perspective['unfilteredMainMenuOver']) && is_callable($perspective['unfilteredMainMenuOver']) && $this->getUserId()) {
             Nova::serving(function (ServingNova $event) use ($perspective, $request) {
                 Nova::provideToScript([
-                    'unfilteredMainMenuOver' => fn() => Menu::wrap(call_user_func($perspective['unfilteredMainMenuOver'], $request)),
+                    'unfilteredMainMenuOver' => fn () => Menu::wrap(call_user_func($perspective['unfilteredMainMenuOver'], $request)),
                 ]);
             });
         }
@@ -139,6 +142,7 @@ class HandleNovaPerspektive
      *
      * @param Request $request
      * @param array   $perspective
+     *
      * @return void
      */
     protected function resolveUnfilteredMainMenuUnder(Request $request, array $perspective): void
@@ -146,7 +150,7 @@ class HandleNovaPerspektive
         if (!empty($perspective['unfilteredMainMenuUnder']) && is_callable($perspective['unfilteredMainMenuUnder']) && $this->getUserId()) {
             Nova::serving(function (ServingNova $event) use ($perspective, $request) {
                 Nova::provideToScript([
-                    'unfilteredMainMenuUnder' => fn() => Menu::wrap(call_user_func($perspective['unfilteredMainMenuUnder'], $request)),
+                    'unfilteredMainMenuUnder' => fn () => Menu::wrap(call_user_func($perspective['unfilteredMainMenuUnder'], $request)),
                 ]);
             });
         }

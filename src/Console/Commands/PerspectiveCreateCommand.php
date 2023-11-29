@@ -34,6 +34,7 @@ class PerspectiveCreateCommand extends GeneratorCommand
      * Get the default namespace for the class.
      *
      * @param string $rootNamespace
+     *
      * @return string
      */
     protected function getDefaultNamespace($rootNamespace): string
@@ -59,6 +60,7 @@ class PerspectiveCreateCommand extends GeneratorCommand
      *
      * @param string $stub
      * @param string $name
+     *
      * @return string
      */
     protected function replaceClass($stub, $name): string
