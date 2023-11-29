@@ -11,6 +11,7 @@ class PerspectiveController extends Controller
 {
     /**
      * @param Request $request
+     *
      * @throws ReflectionException
      * @return void
      */

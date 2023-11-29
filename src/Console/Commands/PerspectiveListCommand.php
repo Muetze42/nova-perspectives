@@ -9,8 +9,8 @@ use NormanHuth\NovaPerspectives\Perspective;
 use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Finder\Finder;
 
 #[AsCommand(name: 'perspective:list')]
 class PerspectiveListCommand extends Command
@@ -73,15 +73,15 @@ class PerspectiveListCommand extends Command
         $namespace = app()->getNamespace();
 
         foreach ((new Finder())->in(config('nova-perspectives.directory'))->files() as $perspective) {
-            $perspective = $namespace.str_replace(
-                    ['/', '.php'],
-                    ['\\', ''],
-                    Str::after($perspective->getPathname(), app_path().DIRECTORY_SEPARATOR)
-                );
+            $perspective = $namespace . str_replace(
+                ['/', '.php'],
+                ['\\', ''],
+                Str::after($perspective->getPathname(), app_path() . DIRECTORY_SEPARATOR)
+            );
 
             if (
                 is_subclass_of($perspective, Perspective::class) &&
-                ! (new ReflectionClass($perspective))->isAbstract()
+                !(new ReflectionClass($perspective))->isAbstract()
             ) {
                 $perspectives[] = $perspective;
             }
@@ -91,6 +91,7 @@ class PerspectiveListCommand extends Command
             ->mapWithKeys(function ($perspective) {
                 /* @var Perspective|string $perspective */
                 $key = $this->option('basename') ? class_basename($perspective) : $perspective;
+
                 return [$key => (new $perspective())->getSlug()];
             })->each(function (string $slug, string $class) {
                 if (in_array($slug, $this->slugs)) {
@@ -110,9 +111,9 @@ class PerspectiveListCommand extends Command
                 }
             });
 
-        $info = $this->perspectives->count().' ';
-        $info.= $this->perspectives->count() == 1 ? 'Perspective' : 'Perspectives';
-        $info.= ' found';
+        $info = $this->perspectives->count() . ' ';
+        $info .= $this->perspectives->count() == 1 ? 'Perspective' : 'Perspectives';
+        $info .= ' found';
         $this->info($info);
 
         $this->line('');
@@ -130,11 +131,11 @@ class PerspectiveListCommand extends Command
         $table = new Table($this->output);
 
         $table->setHeaders([
-            'Perspective Class', 'Perspective Slug'
+            'Perspective Class', 'Perspective Slug',
         ]);
 
         $this->perspectives->each(function (string $slug, string $class) use ($table) {
-            $slug = !in_array($slug, $this->notUniqueSlugs) ? $slug : '<fg=white;bg=red>'.$slug.'</>';
+            $slug = !in_array($slug, $this->notUniqueSlugs) ? $slug : '<fg=white;bg=red>' . $slug . '</>';
             $table->addRow([$class, $slug]);
         });
 
@@ -157,15 +158,16 @@ class PerspectiveListCommand extends Command
      * @param string $left
      * @param string $right
      * @param string $padString
+     *
      * @return void
      */
     protected function tableLine(string $left, string $right, string $padString = ' '): void
     {
-        $line = '|'.$padString;
-        $line.= str_pad($left, $this->leftColumnLength, $padString);
-        $line.= $padString.'|'.$padString;
-        $line.= str_pad($right, $this->rightColumnLength, $padString);
-        $line.= $padString.'|';
+        $line = '|' . $padString;
+        $line .= str_pad($left, $this->leftColumnLength, $padString);
+        $line .= $padString . '|' . $padString;
+        $line .= str_pad($right, $this->rightColumnLength, $padString);
+        $line .= $padString . '|';
 
         $this->line($line);
     }

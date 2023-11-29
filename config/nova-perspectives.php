@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Perspectives Directory
@@ -11,6 +12,7 @@ return [
     | Each Perspective class must extend \NormanHuth\NovaPerspectives\Perspective
     |
     */
+
     'directory' => app_path('Nova/Perspectives'),
 
     /*
@@ -23,5 +25,19 @@ return [
     | is selected by a user.
     |
     */
+
     'cookie' => 'perspective',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Perspectives Collection
+    |--------------------------------------------------------------------------
+    |
+    | Create another Collection class to generate the Collections perspective
+    | differently or from a different source.
+    | The static method and return type must remain as in the original class.
+    |
+    */
+
+    'collection' => \NormanHuth\NovaPerspectives\Support\NovaPerspectivesCollection::class,
 ];
