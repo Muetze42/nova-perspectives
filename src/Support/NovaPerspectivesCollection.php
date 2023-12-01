@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use NormanHuth\NovaPerspectives\Perspective;
+use ReflectionClass;
 use Symfony\Component\Finder\Finder;
 
 class NovaPerspectivesCollection
@@ -15,6 +16,7 @@ class NovaPerspectivesCollection
      *
      * @param \Illuminate\Http\Request  $request
      *
+     * @throws \ReflectionException
      * @return \Illuminate\Support\Collection
      */
     public static function create(Request $request): Collection
