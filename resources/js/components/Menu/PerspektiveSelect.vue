@@ -46,6 +46,11 @@ export default {
             Nova.request().post('/nova-vendor/nova-perspectives/switch-perspective', {
                 perspective: perspective,
             }).then(response => {
+                if (this.pConfig.redirectAfterSwitch) {
+                    Inertia.visit(this.pConfig.redirectAfterSwitch);
+                    return;
+                }
+
                 Inertia.reload()
             })
         },

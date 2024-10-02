@@ -40,4 +40,15 @@ return [
     */
 
     'collection' => \NormanHuth\NovaPerspectives\Support\NovaPerspectivesCollection::class,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Redirect after switching
+    |--------------------------------------------------------------------------
+    |
+    | Redirect to the resource after switching the perspective.
+    |
+    */
+
+    'redirect_after_switch' => null,
 ];

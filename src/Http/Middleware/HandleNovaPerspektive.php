@@ -75,6 +75,7 @@ class HandleNovaPerspektive
         $value = [
             'prefix' => config('nova-perspectives.class-prefix', 'perspective-'),
             'beKind' => config('nova-perspectives.be-kind', true),
+            'redirectAfterSwitch' => config('nova-perspectives.redirect_after_switch'),
             'current' => Arr::only($perspective, $this->toShare),
             'perspectives' => $perspectives
                 ->where('slug', '!=', $perspective['slug'])
