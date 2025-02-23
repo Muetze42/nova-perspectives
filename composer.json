@@ -25,8 +25,8 @@
         }
     },
     "require": {
-        "php": "^8.0",
-        "laravel/nova": "^4.29.1",
+        "php": "^8.2",
+        "laravel/nova": "^5.1",
         "norman-huth/nova-basic-package": "^1.2.6"
     }
 }
